@@ -16,6 +16,7 @@ Open [`docs/index.html`](docs/index.html) in a browser, or enable GitHub Pages (
 | 5 | Instructions, skill, or agent? | `index.html#choose` |
 | 6 | Using DESIGN.md | `index.html#design` |
 | 7 | Watching and minimizing AI credits | `index.html#credits` |
+| 8 | Choosing a model for the task | `index.html#models` |
 
 The whole guide is a single self-contained HTML file with no build step.
 

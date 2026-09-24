@@ -142,6 +142,22 @@ td code{white-space:nowrap}
 
 .checked{font-size:.85rem;color:var(--steel);margin-top:48px}
 
+/* ---------- models: tiers & task cards ---------- */
+.tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:22px 0 10px}
+.tier{background:var(--panel);border:1px solid var(--rule);border-top:6px solid var(--flow);border-radius:8px;padding:14px 16px}
+.tier:nth-child(1){border-top-color:color-mix(in srgb,var(--flow) 45%,transparent)}
+.tier:nth-child(3){border-top-color:var(--amber)}
+.tier:nth-child(4){border-top-color:var(--ink)}
+.tier .nm{font-family:var(--display);font-weight:700;font-size:1.05rem;margin:0 0 4px}
+.tier .ds{font-size:.88rem;color:var(--steel);margin:0 0 8px}
+.tier .ms{font-size:.85rem;margin:0}
+.task{background:var(--panel);border:1px solid var(--rule);border-left:6px solid var(--flow);border-radius:0 10px 10px 0;padding:18px 22px 10px;margin:22px 0}
+.task.big{border-left-color:var(--amber)}
+.task h3{margin:0 0 4px}
+.task .pick{font:500 .9rem var(--mono);color:var(--flow);margin:0 0 10px}
+.task.big .pick{color:var(--amber)}
+td.num,th.num{text-align:right;font-family:var(--mono)}
+
 /* ---------- responsive ---------- */
 @media (max-width: 900px){
   .shell{grid-template-columns:1fr}
@@ -182,6 +198,7 @@ td code{white-space:nowrap}
     <li><a href="#choose"><span class="stn">5</span><span class="lbl">Which one do I use?<small>Decision guide</small></span></a></li>
     <li><a href="#design"><span class="stn">6</span><span class="lbl">DESIGN.md<small>Design systems for agents</small></span></a></li>
     <li><a href="#credits"><span class="stn">7</span><span class="lbl">Credits &amp; tokens<small>Watch and minimize spend</small></span></a></li>
+    <li><a href="#models"><span class="stn">8</span><span class="lbl">Choosing a model<small>Right model for the job</small></span></a></li>
   </ol>
   <div class="rail-foot">
     Checked against the VS Code and GitHub docs in September 2026. Copilot changes monthly, so confirm setting names against the linked docs.
@@ -218,6 +235,7 @@ td code{white-space:nowrap}
     <li><a href="#choose"><span class="n">5</span><span><span class="t">Which one do I use?</span><span class="d">An interactive decision guide plus a comparison table.</span></span></a></li>
     <li><a href="#design"><span class="n">6</span><span><span class="t">DESIGN.md</span><span class="d">Give agents your design system so generated UI stays on-brand.</span></span></a></li>
     <li><a href="#credits"><span class="n">7</span><span><span class="t">Credits and tokens</span><span class="d">How billing works, where to see usage, and habits that cut cost.</span></span></a></li>
+    <li><a href="#models"><span class="n">8</span><span><span class="t">Choosing a model</span><span class="d">How models differ, and which to use for docs, small changes and large changes.</span></span></a></li>
   </ul>
 
   <h2>Before you start</h2>
@@ -416,7 +434,7 @@ then run `npm test -- statusClient` and fix any failures.</code></pre></div>
 <span class="k">name:</span> <span class="s">Reviewer</span>
 <span class="k">description:</span> <span class="s">Review the current changes for correctness and our conventions. Never edits.</span>
 <span class="k">tools:</span> [<span class="s">'search/codebase'</span>, <span class="s">'search/usages'</span>, <span class="s">'read/terminalLastCommand'</span>]
-<span class="k">model:</span> [<span class="s">'Claude Sonnet 4.5'</span>, <span class="s">'GPT-5.2'</span>]   <span class="c"># tried in order</span>
+<span class="k">model:</span> [<span class="s">'Claude Sonnet 5'</span>, <span class="s">'GPT-5.6 Terra'</span>]   <span class="c"># tried in order</span>
 <span class="k">handoffs:</span>
   - <span class="k">label:</span> <span class="s">Fix findings</span>
     <span class="k">agent:</span> <span class="s">agent</span>
@@ -793,7 +811,7 @@ npx @google/design.md export --format css-tailwind DESIGN.md &gt; theme.css</cod
   <h2>Habits that cut cost</h2>
   <h3>Choose the model on purpose</h3>
   <ul>
-    <li>Use <strong>auto model selection</strong> as a default; it routes simple requests to efficient models.</li>
+    <li>Use <strong>auto model selection</strong> as a default; it routes simple requests to efficient models. Guide 8 covers <a href="#models">choosing a model</a> by task.</li>
     <li>Don't use a frontier reasoning model to rename a variable. Don't use a weak model for architecture either; retries and rework cost more than getting it right once.</li>
     <li>Pin models in custom agents: strong model for the Planner, efficient model for bounded implementation.</li>
     <li>Leave thinking effort at its default unless the problem is genuinely hard. Thinking tokens are output tokens, the expensive kind.</li>
@@ -828,7 +846,126 @@ npx @google/design.md export --format css-tailwind DESIGN.md &gt; theme.css</cod
   <div class="warn"><p><b>Code review can bill twice.</b> Copilot code review on github.com consumes AI credits for the model and GitHub Actions minutes for the run. Worth knowing before enabling it on every pull request.</p></div>
 
   <p class="checked">Source: <a href="https://code.visualstudio.com/docs/agents/guides/optimize-usage">Optimize AI credit usage in VS Code</a>, <a href="https://github.blog/news-insights/company-news/github-copilot-is-moving-to-usage-based-billing/">GitHub blog on usage-based billing</a>.</p>
-  <div class="pager"><a href="#design"><small>Previous</small><span>DESIGN.md</span></a><a class="next" href="#home"><small>Back to</small><span>Start here</span></a></div>
+  <div class="pager"><a href="#design"><small>Previous</small><span>DESIGN.md</span></a><a class="next" href="#models"><small>Next</small><span>Choosing a model</span></a></div>
+</article>
+
+<!-- ================= 8 MODELS ================= -->
+<article class="page" id="p-models" data-page="models">
+  <p class="guide-no">Guide 8</p>
+  <h1>Choosing a model</h1>
+  <p class="lede">The model picker lists dozens of models, and they aren't interchangeable. Some are fast and cheap, some reason carefully through large codebases, and the per-token price can differ by as much as 100 times. Match the model to the job, not to habit.</p>
+
+  <h2>What actually differs</h2>
+  <ul>
+    <li><strong>Reasoning depth.</strong> Stronger models hold more constraints in mind, plan across files and recover from their own mistakes. Lighter models are fine when the answer is local and obvious.</li>
+    <li><strong>Agentic stamina.</strong> Long agent sessions need a model that keeps calling tools correctly for dozens of turns without drifting. This is where the top tier earns its price.</li>
+    <li><strong>Speed.</strong> Light models answer in a second or two. That matters when you're iterating in inline chat.</li>
+    <li><strong>Context window.</strong> Some models offer a 1 million token extended context, billed at a higher long-context rate. Most tasks don't need it; attaching the right files beats attaching everything.</li>
+    <li><strong>Price per token.</strong> Input, cached input and output are each priced per model (guide 7). Output is typically 5 to 10 times the input rate, and thinking counts as output.</li>
+  </ul>
+  <div class="note"><p><b>Price per token isn't price per task.</b> A cheap model that needs three attempts and a manual fix costs more, in credits and in your time, than a stronger model that gets it right once. Pick the cheapest model that reliably succeeds at the task.</p></div>
+
+  <h2>The four tiers</h2>
+  <p>GitHub groups models by task. Collapsed to four tiers, with examples from the September 2026 list:</p>
+  <div class="tiers" role="list">
+    <div class="tier" role="listitem"><p class="nm">Fast and light</p><p class="ds">Quick answers, simple edits, lookups. Lowest cost.</p><p class="ms">GPT-5.6 Luna, GPT-6 Luna, GPT-5 mini, Claude Haiku 4.5, Gemini Flash, MAI-Code-1.1-Flash</p></div>
+    <div class="tier" role="listitem"><p class="nm">Balanced</p><p class="ds">Everyday coding and agent work. The sensible default.</p><p class="ms">Claude Sonnet 5, GPT-5.6 Terra, GPT-6 Sol, GPT-5.3-Codex</p></div>
+    <div class="tier" role="listitem"><p class="nm">Deep reasoning</p><p class="ds">Architecture, hard debugging, multi-step agent work.</p><p class="ms">Claude Opus 5.5, GPT-5.6 Sol, GPT-5.5</p></div>
+    <div class="tier" role="listitem"><p class="nm">Long-horizon</p><p class="ds">Very long agent runs and codebase-wide research. Premium price.</p><p class="ms">Claude Fable 5.1, GPT-6 Astra</p></div>
+  </div>
+  <p class="legend">Your organization's policies decide which of these appear in your picker. Some models also carry extra data-retention terms; your admin will know if that rules any out.</p>
+
+  <h2>Which model for which job</h2>
+
+  <div class="task">
+    <h3>Documentation</h3>
+    <p class="pick">Fast and light, or balanced for docs people rely on</p>
+    <p>READMEs, docstrings, comments, release notes, explaining what a file does. Most of this is summarizing code you point at, which light models do well. Two exceptions justify the balanced tier: architecture or onboarding docs that have to read and connect many files, and anything customer-facing where tone and accuracy matter.</p>
+    <ul>
+      <li>Docstrings and comments: select the code, <kbd>Ctrl</kbd>+<kbd>I</kbd>, light model.</li>
+      <li>Release notes and changelogs: a skill with a template (guide 4) on a light model beats a stronger model guessing the format.</li>
+      <li>Docs input is mostly code you attach, so it's input-heavy. Models with low input rates stay cheap even when you attach several files.</li>
+      <li>Always check facts: commands, flags and version numbers. Every tier invents plausible-looking ones.</li>
+    </ul>
+  </div>
+
+  <div class="task">
+    <h3>Small code changes</h3>
+    <p class="pick">Auto, or a light model; step up to balanced if it misses</p>
+    <p>A bug fix in one function, adding a parameter, a unit test for existing code, renaming across a few files. The change is bounded and you can see the whole thing in one diff.</p>
+    <ul>
+      <li>Start with <strong>Auto</strong>. It routes simple requests to efficient models, and paid plans get a discount for using it.</li>
+      <li>Give exact context: the file, the error, the expected behavior. With good grounding a light model is usually enough.</li>
+      <li>If the first attempt is wrong, fix the prompt once. If the second is wrong too, switch to a balanced model; don't keep retrying the cheap one.</li>
+      <li>Leave thinking effort at its default or lower. Extra reasoning on a small change is mostly wasted output tokens.</li>
+    </ul>
+  </div>
+
+  <div class="task big">
+    <h3>Large, complex code changes</h3>
+    <p class="pick">Deep reasoning to plan, balanced to build, deep reasoning to review</p>
+    <p>New features across layers, refactors, migrations, debugging problems that span services, anything where a wrong early decision is expensive. Don't run the whole task on one model. Split it:</p>
+    <ol>
+      <li><strong>Plan</strong> with a deep-reasoning model in the Plan agent. It reads widely and makes the design decisions. Correct the plan before any code is written.</li>
+      <li><strong>Implement</strong> each step of the plan with a balanced model. The steps are now bounded, so the expensive reasoning is already done.</li>
+      <li><strong>Review</strong> the result with a deep-reasoning model in a fresh session, focused on the diff.</li>
+    </ol>
+    <p>Custom agents with handoffs (guide 3) make this a repeatable workflow: pin the strong model in the Planner and Reviewer, and the balanced one in the Implementer.</p>
+    <ul>
+      <li>Reserve the long-horizon tier for work that genuinely runs for hours or has to search a very large codebase. Its rates are roughly five times the balanced tier.</li>
+      <li>Raise thinking effort for the planning step, not for implementation.</li>
+      <li>Use the 1M-token context only when the task truly needs it. Long-context rates are higher on every turn.</li>
+    </ul>
+  </div>
+
+  <h2>At a glance</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Task</th><th>Tier</th><th>Surface</th><th>Thinking effort</th></tr></thead>
+    <tbody>
+      <tr><td>Docstrings, comments, explain code</td><td>Fast and light</td><td>Inline chat</td><td>Low / default</td></tr>
+      <tr><td>README, release notes</td><td>Fast and light, with a skill</td><td>Chat view</td><td>Default</td></tr>
+      <tr><td>Architecture or onboarding docs</td><td>Balanced</td><td>Chat view</td><td>Default</td></tr>
+      <tr><td>Bounded fix, test, small refactor</td><td>Auto or fast and light</td><td>Inline chat or Agent</td><td>Default</td></tr>
+      <tr><td>Multi-file feature, migration, cross-service bug</td><td>Deep reasoning plans; balanced builds</td><td>Plan agent, then Agent</td><td>High for planning only</td></tr>
+      <tr><td>Hours-long agent run, codebase-wide research</td><td>Long-horizon</td><td>Agent or background session</td><td>Default</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>What the choice costs</h2>
+  <p>The same three tasks priced on one model from each tier, using GitHub's September 2026 rates. These are rough estimates: 60% of input cached, cache-write charges ignored. Plug your own numbers into the estimator in <a href="#credits">guide 7</a>.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Task (turns × input / output tokens)</th><th class="num">GPT-5.6 Luna</th><th class="num">Claude Sonnet 5</th><th class="num">Claude Opus 5.5</th><th class="num">Claude Fable 5.1</th></tr></thead>
+    <tbody>
+      <tr><td>Documentation (5 × 20k / 1.5k)</td><td class="num">2</td><td class="num">17</td><td class="num">32</td><td class="num">79</td></tr>
+      <tr><td>Small change (8 × 30k / 1k)</td><td class="num">3</td><td class="num">30</td><td class="num">57</td><td class="num">140</td></tr>
+      <tr><td>Large change (40 × 80k / 4k)</td><td class="num">49</td><td class="num">454</td><td class="num">870</td><td class="num">2,128</td></tr>
+    </tbody>
+  </table></div>
+  <p>Values are AI credits (100 credits = $1). The gap between tiers is real, but so is the gap between session sizes. A large change on Sonnet costs more than a hundred small ones on Luna. Keeping sessions short (guide 7) matters as much as the model you pick.</p>
+
+  <h2>How to set the model</h2>
+  <ul>
+    <li><strong>Model picker</strong> in the chat input: applies to the current session. Hover a model to see its rate.</li>
+    <li><strong>Auto</strong>: lets Copilot choose per request. A good default for small, mixed work.</li>
+    <li><strong>Custom agents</strong>: <code>model:</code> in the <code>.agent.md</code> front matter pins a model, or a list tried in order, for that role (guide 3).</li>
+    <li><strong>Thinking effort</strong>: set in the picker on models that support configurable reasoning. Higher effort means more output tokens.</li>
+  </ul>
+
+  <h2>Signs you picked wrong</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>You notice</th><th>Do this</th></tr></thead>
+    <tbody>
+      <tr><td>It edits the wrong files, ignores constraints, or loops on the same failing fix</td><td>Step up a tier. Better yet, stop and plan with a stronger model.</td></tr>
+      <tr><td>A strong model spends minutes thinking about a one-line change</td><td>Step down, or lower thinking effort.</td></tr>
+      <tr><td>Answers are good but slow while you iterate</td><td>Use a light model in inline chat for the quick loop.</td></tr>
+      <tr><td>Every model struggles</td><td>It's probably context, not the model. Attach the right files, trim the session, check your instructions.</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="note"><p><b>This list goes stale fast.</b> New models ship almost monthly and rates change. Treat the tiers as the lasting idea and the model names as examples. Re-check the linked docs before you standardize on one.</p></div>
+
+  <p class="checked">Source: <a href="https://docs.github.com/en/copilot/reference/ai-models/model-comparison">AI model comparison</a>, <a href="https://docs.github.com/en/copilot/reference/ai-models/supported-models">supported models</a>, <a href="https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing">models and pricing</a>.</p>
+  <div class="pager"><a href="#credits"><small>Previous</small><span>Credits &amp; tokens</span></a><a class="next" href="#home"><small>Back to</small><span>Start here</span></a></div>
 </article>
 
 </main>
