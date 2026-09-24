@@ -158,6 +158,19 @@ td code{white-space:nowrap}
 .task.big .pick{color:var(--amber)}
 td.num,th.num{text-align:right;font-family:var(--mono)}
 
+/* ---------- links ---------- */
+.picks{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:22px 0 10px}
+.pick-card{display:block;background:var(--panel);border:1px solid var(--rule);border-top:6px solid var(--amber);border-radius:8px;padding:16px 18px;text-decoration:none;color:var(--ink)}
+.pick-card:hover{border-color:var(--amber)}
+.pick-card .kind{font:500 .78rem var(--mono);color:var(--amber);margin:0 0 6px;text-transform:uppercase;letter-spacing:.04em}
+.pick-card .nm{font-family:var(--display);font-weight:700;font-size:1.2rem;margin:0 0 6px}
+.pick-card .ds{font-size:.9rem;color:var(--steel);margin:0}
+.pick-card .url{font:400 .8rem var(--mono);color:var(--flow);margin:10px 0 0;word-break:break-all}
+.links{list-style:none;padding:0;margin:14px 0}
+.links li{max-width:none;margin:0;padding:12px 0;border-top:1px solid var(--rule)}
+.links a{font-weight:600}
+.links span{display:block;color:var(--steel);font-size:.92rem;margin-top:2px}
+
 /* ---------- responsive ---------- */
 @media (max-width: 900px){
   .shell{grid-template-columns:1fr}
@@ -199,6 +212,7 @@ td.num,th.num{text-align:right;font-family:var(--mono)}
     <li><a href="#design"><span class="stn">6</span><span class="lbl">DESIGN.md<small>Design systems for agents</small></span></a></li>
     <li><a href="#credits"><span class="stn">7</span><span class="lbl">Credits &amp; tokens<small>Watch and minimize spend</small></span></a></li>
     <li><a href="#models"><span class="stn">8</span><span class="lbl">Choosing a model<small>Right model for the job</small></span></a></li>
+    <li><a href="#links"><span class="stn">9</span><span class="lbl">Helpful links<small>Where to keep learning</small></span></a></li>
   </ol>
   <div class="rail-foot">
     Checked against the VS Code and GitHub docs in September 2026. Copilot changes monthly, so confirm setting names against the linked docs.
@@ -236,6 +250,7 @@ td.num,th.num{text-align:right;font-family:var(--mono)}
     <li><a href="#design"><span class="n">6</span><span><span class="t">DESIGN.md</span><span class="d">Give agents your design system so generated UI stays on-brand.</span></span></a></li>
     <li><a href="#credits"><span class="n">7</span><span><span class="t">Credits and tokens</span><span class="d">How billing works, where to see usage, and habits that cut cost.</span></span></a></li>
     <li><a href="#models"><span class="n">8</span><span><span class="t">Choosing a model</span><span class="d">How models differ, and which to use for docs, small changes and large changes.</span></span></a></li>
+    <li><a href="#links"><span class="n">9</span><span><span class="t">Helpful links</span><span class="d">The best places to keep learning, plus the official docs.</span></span></a></li>
   </ul>
 
   <h2>Before you start</h2>
@@ -965,7 +980,65 @@ npx @google/design.md export --format css-tailwind DESIGN.md &gt; theme.css</cod
   <div class="note"><p><b>This list goes stale fast.</b> New models ship almost monthly and rates change. Treat the tiers as the lasting idea and the model names as examples. Re-check the linked docs before you standardize on one.</p></div>
 
   <p class="checked">Source: <a href="https://docs.github.com/en/copilot/reference/ai-models/model-comparison">AI model comparison</a>, <a href="https://docs.github.com/en/copilot/reference/ai-models/supported-models">supported models</a>, <a href="https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing">models and pricing</a>.</p>
-  <div class="pager"><a href="#credits"><small>Previous</small><span>Credits &amp; tokens</span></a><a class="next" href="#home"><small>Back to</small><span>Start here</span></a></div>
+  <div class="pager"><a href="#credits"><small>Previous</small><span>Credits &amp; tokens</span></a><a class="next" href="#links"><small>Next</small><span>Helpful links</span></a></div>
+</article>
+
+<!-- ================= 9 LINKS ================= -->
+<article class="page" id="p-links" data-page="links">
+  <p class="guide-no">Guide 9</p>
+  <h1>Helpful links</h1>
+  <p class="lede">These guides cover the basics. The tools change every month, so the real skill is keeping up. These are the places worth your time.</p>
+
+  <h2>Start with these</h2>
+  <div class="picks">
+    <a class="pick-card" href="https://www.aihero.dev/" target="_blank" rel="noopener">
+      <p class="kind">Site</p>
+      <p class="nm">AI Hero</p>
+      <p class="ds">Matt Pocock's courses, articles and tutorials on AI engineering for working developers. Practical, code-first, and focused on patterns that last beyond any one tool.</p>
+      <p class="url">aihero.dev</p>
+    </a>
+    <a class="pick-card" href="https://www.youtube.com/@mattpocockuk" target="_blank" rel="noopener">
+      <p class="kind">YouTube</p>
+      <p class="nm">Matt Pocock</p>
+      <p class="ds">Short, clear videos on coding with AI agents, skills and workflows, plus TypeScript. A good habit: watch one a week.</p>
+      <p class="url">youtube.com/@mattpocockuk</p>
+    </a>
+    <a class="pick-card" href="https://www.youtube.com/@aiDotEngineer" target="_blank" rel="noopener">
+      <p class="kind">YouTube</p>
+      <p class="nm">AI Engineer</p>
+      <p class="ds">Talks from the AI Engineer conferences by the people building the tools and the teams using them in production. Longer, deeper, and a good read on where things are heading.</p>
+      <p class="url">youtube.com/@aiDotEngineer</p>
+    </a>
+  </div>
+
+  <h2>Examples to copy from</h2>
+  <ul class="links">
+    <li><a href="https://github.com/mattpocock/skills" target="_blank" rel="noopener">mattpocock/skills</a><span>Matt Pocock's own agent skills: TDD, debugging, code review, refactor planning and more. Good models for writing your own (guide 4).</span></li>
+    <li><a href="https://github.com/github/awesome-copilot" target="_blank" rel="noopener">github/awesome-copilot</a><span>Community instructions, custom agents, skills and prompt files for Copilot, organized by language and task.</span></li>
+  </ul>
+
+  <h2>Official docs</h2>
+  <ul class="links">
+    <li><a href="https://code.visualstudio.com/docs/agents/overview" target="_blank" rel="noopener">VS Code: AI and agents</a><span>The reference for everything in guides 1 to 4.</span></li>
+    <li><a href="https://code.visualstudio.com/docs/agents/best-practices" target="_blank" rel="noopener">VS Code: best practices</a><span>Prompting, context and session habits, from the VS Code team.</span></li>
+    <li><a href="https://docs.github.com/en/copilot" target="_blank" rel="noopener">GitHub Copilot docs</a><span>Plans, billing, models, and features that run on github.com.</span></li>
+    <li><a href="https://docs.github.com/en/copilot/reference/ai-models/model-comparison" target="_blank" rel="noopener">AI model comparison</a><span>GitHub's current task-by-task model recommendations (guide 8).</span></li>
+  </ul>
+
+  <h2>Open standards</h2>
+  <ul class="links">
+    <li><a href="https://agents.md/" target="_blank" rel="noopener">AGENTS.md</a><span>The shared instructions format read by Copilot and most other coding agents (guide 2).</span></li>
+    <li><a href="https://agentskills.io/" target="_blank" rel="noopener">Agent Skills</a><span>The open specification behind <code>SKILL.md</code> (guide 4).</span></li>
+    <li><a href="https://github.com/google-labs-code/design.md" target="_blank" rel="noopener">DESIGN.md</a><span>The spec and CLI for design systems that agents can read (guide 6).</span></li>
+  </ul>
+
+  <h2>Staying current</h2>
+  <ul class="links">
+    <li><a href="https://github.blog/changelog/label/copilot/" target="_blank" rel="noopener">GitHub Changelog: Copilot</a><span>New models, features and billing changes as they ship. Skim it monthly.</span></li>
+    <li><a href="https://www.ai.engineer/" target="_blank" rel="noopener">AI Engineer conferences</a><span>Event schedule and talk archive for the AI Engineer channel above.</span></li>
+  </ul>
+
+  <div class="pager"><a href="#models"><small>Previous</small><span>Choosing a model</span></a><a class="next" href="#home"><small>Back to</small><span>Start here</span></a></div>
 </article>
 
 </main>
